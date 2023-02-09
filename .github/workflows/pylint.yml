@@ -29,5 +29,5 @@ jobs:
         
     - name: Analysing the code with pylint
       run: |
-        pylint --check-reorder-python-imports ${{ steps.changed-files.outputs.all_changed_files }}
+        pylint ${{ steps.changed-files.outputs.all_changed_files }}
 
