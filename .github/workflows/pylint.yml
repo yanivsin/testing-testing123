@@ -24,6 +24,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with: 
         name: pytest-results
-        path: ./test-results
-      continue-on-error: false
+        path: /archive
       if: ${{ always() }}
