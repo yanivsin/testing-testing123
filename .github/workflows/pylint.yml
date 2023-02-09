@@ -23,10 +23,9 @@ jobs:
       run: |
         pylint $(git ls-files '*.py')
     - name: Upload test results
-      run: | 
-        actions/upload-artifact@v3
-        with
-          name: pytest-results
-          path: ./test-results
-    continue-on-error: false
-    if: ${{ always() }}
+      uses: actions/upload-artifact@v3
+      with: 
+        name: pytest-results
+        path: ./test-results
+      continue-on-error: false
+      if: ${{ always() }}
