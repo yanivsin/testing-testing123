@@ -20,9 +20,4 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
-    - name: Upload test results
-      uses: actions/upload-artifact@v3
-      with: 
-        name: pytest-results
-        path: /archive/test.txt
-      if: ${{ always() }}
+
