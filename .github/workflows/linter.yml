@@ -44,9 +44,9 @@ jobs:
       # Run Linter against code base #
       ################################
       - name: Lint Code Base
-        uses: github/super-linter:v4
+        uses: github/super-linter:v4@v4.10.1
         env:
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: master
           CREATE_LOG_FILE: true
           VALIDATE_PYTHON: true
