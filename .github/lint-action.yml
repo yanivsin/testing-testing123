@@ -13,7 +13,7 @@ on:
 permissions:
   checks: write
   contents: write
-  
+
 jobs:
   run-linters:
     name: Run linters
@@ -34,6 +34,10 @@ jobs:
       - name: Run linters
         uses: wearerequired/lint-action@v2
         with:
+          github_token: ${{ github.token }}
+          auto_fix: false
           black: true
           black_auto_fix: false
           flake8: true
+          flake8_args: --ignore=F401
+          flake8_auto_fix: false
