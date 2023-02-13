@@ -31,5 +31,5 @@ jobs:
         uses: wearerequired/lint-action@v2
         with:
           black: true
-          black_auto_fix: true
+          black_auto_fix: false
           flake8: true
