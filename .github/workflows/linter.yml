@@ -35,8 +35,9 @@ jobs:
         uses: wearerequired/lint-action@v2
         with:
           github_token: ${{ github.token }}
-          auto_fix: true
+          auto_fix: false
           black: true
-          black_auto_fix: true
+          black_auto_fix: false
           flake8: true
           flake8_auto_fix: false
+          oitnb: true
