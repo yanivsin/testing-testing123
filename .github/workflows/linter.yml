@@ -1,47 +1,43 @@
----
-#################################
-#################################
-## Super Linter GitHub Actions ##
-#################################
-#################################
-name: Lint Code Base
+name: Linter
 
-#############################
-# Start the job on all push #
-#############################
-on: [pull_request, push]
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-###############
-# Set the Job #
-###############
+permissions:
+  checks: write
+  contents: write
+
 jobs:
-  build:
-    # Name the Job
-    name: Lint Code Base
-    # Set the agent to run on
+  run-linters:
+    name: Run linters
     runs-on: ubuntu-latest
 
-    ##################
-    # Load all steps #
-    ##################
     steps:
-      ##########################
-      # Checkout the code base #
-      ##########################
-      - name: Checkout Code
+      - name: Check out Git repository
         uses: actions/checkout@v3
-        with:
-          # Full git history is needed to get a proper
-          # list of changed files within `super-linter`
-          fetch-depth: 0
 
-      ################################
-      # Run Linter against code base #
-      ################################
-      - name: Lint Code Base
-        uses: github/super-linter/slim@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: master
-          VALIDATE_PYTHON_BLACK: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - name: Install Python dependencies
+        run: pip install black flake8
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          github_token: ${{ github.token }}
+          auto_fix: false
+          black: true
+          black_auto_fix: false
+          flake8: true
+          flake8_args: --ignore=F401
+          flake8_auto_fix: false
