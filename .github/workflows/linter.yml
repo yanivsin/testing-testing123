@@ -1,14 +1,16 @@
 name: Linter
 
 on:
-  # Trigger the workflow on push or pull request,
-  # but only for the main branch
-  push:
+  # Trigger the workflow on pull request targeting the main branch,
+  # and run on push to branches currently under pull request
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - master
+    paths:
+      - dags/**
 
 permissions:
   checks: write
@@ -37,7 +39,10 @@ jobs:
           github_token: ${{ github.token }}
           auto_fix: false
           black: true
+          black_dir: ./dags/
+          black_args: --preview --skip-string-normalization
           black_auto_fix: false
           flake8: true
-          flake8_args: --ignore=F401
+          flake8_dir: ./dags/
+          flake8_args: --ignore=E501,W503,E203,F541,W291,W191,E101,E731,W605,W293
           flake8_auto_fix: false
