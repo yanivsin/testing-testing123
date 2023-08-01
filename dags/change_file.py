@@ -22,3 +22,4 @@ dag_description = """
 queries the BI_RDS in order to find the latest partitions. if there are multiple versions and the timestamp is with in
 two weeks retains 2 versions, otherwise leaves only one version remaining.
 """
+print('ctr')
