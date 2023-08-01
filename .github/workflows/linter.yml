@@ -1,12 +1,18 @@
 name: Linter
 
 on:
-  # Trigger the workflow on pull request targeting the main branch,
-  # and run on push to branches currently under pull request
+  # Trigger the workflow on pull request targeting the main branch
   pull_request_target:
     types:
       - opened
       - synchronize
+    branches:
+      - master
+    paths:
+      - dags/**
+  
+  # Trigger the workflow on push to the master branch
+  push:
     branches:
       - master
     paths:
