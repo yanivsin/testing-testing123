@@ -7,14 +7,14 @@ on:
       - opened
       - synchronize
     branches:
-      - master
+      - main
     paths:
       - dags/**
   
   # Trigger the workflow on push to the master branch
   push:
     branches:
-      - master
+      - main
     paths:
       - dags/**
 
