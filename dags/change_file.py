@@ -23,3 +23,4 @@ queries the BI_RDS in order to find the latest partitions. if there are multiple
 two weeks retains 2 versions, otherwise leaves only one version remaining.
 """
 blahh
+sittingin the rait
