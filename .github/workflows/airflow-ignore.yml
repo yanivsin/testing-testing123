@@ -5,12 +5,12 @@ on:
       - opened
       - synchronize
     branches:
-      - master
+      - main
     paths:
       - dags/.airflowignore
   push:
     branches:
-       - master
+       - main
     paths:
        - dags/.airflowignore
 
