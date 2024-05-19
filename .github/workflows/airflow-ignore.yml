@@ -1,0 +1,45 @@
+name: run airflow-ignore
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches:
+      - master
+    paths:
+      - dags/.airflowignore
+  push:
+    branches:
+       - master
+    paths:
+       - dags/.airflowignore
+
+jobs:
+  Airflow_Ignore_Check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Create Python script
+      run: |
+        cat <<EOF > check_airflowignore_content.py
+        with open("dags/.airflowignore", "r") as f:
+            content = f.read()
+            print(f'airflowignore file:\n {content}')
+            if content.strip() == "_lib/\n/_lib":
+                print('airflowIgnore is unchanged, you may merge')
+                exit(0)
+            else:
+                print("blocking pull request!\n airflowignore must be: - '_lib/\n/_lib'")
+                exit(1)
+        EOF
+
+    - name: Run Python script
+      run: python3 airflow-ignore.py
