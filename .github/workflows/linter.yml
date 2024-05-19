@@ -45,10 +45,3 @@ jobs:
           github_token: ${{ github.token }}
           auto_fix: false
           black: true
-          black_dir: ./dags/
-          black_args: --preview --skip-string-normalization
-          black_auto_fix: false
-          flake8: true
-          flake8_dir: ./dags/
-          flake8_args: --ignore=E501,W503,E203,F541,W291,W191,E101,E731,W605,W293
-          flake8_auto_fix: false
