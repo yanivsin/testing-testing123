@@ -7,7 +7,7 @@ on:
     branches:
       - main
     paths:
-      - dags/.airflowignore
+      - dags/**
       
 jobs:
   Airflow_Ignore_Check:
