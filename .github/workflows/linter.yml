@@ -10,14 +10,7 @@ on:
       - main
     paths:
       - dags/**
-  
-  # Trigger the workflow on push to the master branch
-  push:
-    branches:
-      - main
-    paths:
-      - dags/**
-
+      
 permissions:
   checks: write
   contents: write
