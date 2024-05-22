@@ -17,7 +17,7 @@ from airflow.models import Variable
 from airflow.operators.python_operator import PythonOperator
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.utils.dates import days_ago
-
+sdfs 
 dag_description = """
 queries the BI_RDS in order to find the latest partitions. if there are multiple versions and the timestamp is with in
 two weeks retains 2 versions, otherwise leaves only one version remaining.
