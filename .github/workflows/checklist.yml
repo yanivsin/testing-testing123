@@ -1,0 +1,14 @@
+on:
+    pull_request:
+
+jobs:
+    update-pr-description:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            - name: Update PR Description
+              uses: nefrob/pr-description@v1.1.2
+              with:
+                  content: "bla bla bla"
+                  token: ${{ secrets.GITHUB_TOKEN }}
