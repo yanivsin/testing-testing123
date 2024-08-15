@@ -13,17 +13,17 @@ jobs:
                   content: |
                       ## Types of change
                       - [ ] New pipeline (addition of new pipeline)
-                      - [ ] Existing pipeline update (fix or new addition to the existing pipeline)
                       - [ ] New feature (adds functionality such as task_group, operator, sensor, etc.)
+                      - [ ] Existing pipeline update (fix or new addition to the existing pipeline)
+                      - [ ] Existing feature update (fix or new addition to existing functionality such as task_group, operator, sensor, etc.)
                       - [ ] Bug fix (non-breaking change which fixes an issue)
                       ## Tested on
                       - [ ] Local Airflow (Docker)
                       - [ ] Development Airflow (MWAA)
                       ## Checklist
-                      - [ ] I tested this change for several days to ensure its stability
+                      - [ ] I tested this change end to end and it works as expected, without affecting other processes
                       - [ ] I performed data validation checks to guarantee the quality and accuracy of the data
                       - [ ] The data has been approved by the relevant stakeholders
-                      - [ ] I have verified that my modifications will not impact other ongoing processes
                       - [ ] I have documented my code, particularly in hard-to-understand areas
                       - [ ] I have revised the description of the process
                       - [ ] The pull request is prepared and ready for production
