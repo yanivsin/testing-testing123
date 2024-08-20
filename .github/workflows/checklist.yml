@@ -27,5 +27,5 @@ jobs:
                       - [ ] I have documented my code, particularly in hard-to-understand areas
                       - [ ] I have revised the description of the process
                       - [ ] The pull request is prepared and ready for production
-                  regex: '^.{0}$'
+                  regex: "^.{0}$"
                   token: ${{ secrets.GITHUB_TOKEN }}
