@@ -7,10 +7,10 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-            - name: Update Pull Request Description     
-              uses: riskledger/update-pr-description@v2
+            - name: Update PR Description
+              uses: riskledger/update-pr-description@dev
               with:
-                  body: |
+                  content: |
                       ## Types of change
                       - [ ] New pipeline (addition of new pipeline)
                       - [ ] New feature (adds functionality such as task_group, operator, sensor, etc.)
@@ -27,4 +27,6 @@ jobs:
                       - [ ] I have documented my code, particularly in hard-to-understand areas
                       - [ ] I have revised the description of the process
                       - [ ] The pull request is prepared and ready for production
+                  regex: "^.{0}$"
+                  appendContentOnMatchOnly: true
                   token: ${{ secrets.GITHUB_TOKEN }}
