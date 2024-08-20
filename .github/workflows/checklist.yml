@@ -1,5 +1,6 @@
 on:
     pull_request:
+        types: [opened]
 
 jobs:
     update-pr-description:
@@ -27,6 +28,4 @@ jobs:
                       - [ ] I have documented my code, particularly in hard-to-understand areas
                       - [ ] I have revised the description of the process
                       - [ ] The pull request is prepared and ready for production
-                  regex: "^$"
-                  appendContentOnMatchOnly: true
                   token: ${{ secrets.GITHUB_TOKEN }}
