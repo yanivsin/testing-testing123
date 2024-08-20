@@ -26,5 +26,4 @@ jobs:
                       - [ ] The data has been approved by the relevant stakeholders
                       - [ ] I have documented my code, particularly in hard-to-understand areas
                       - [ ] I have revised the description of the process
-                      - [ ] The pull request is prepared and ready for production
                   token: ${{ secrets.GITHUB_TOKEN }}
