@@ -45,11 +45,11 @@ jobs:
         run: |
           COMMIT_AUTHOR_NAME=$(jq -r .pull_request.user.login "${GITHUB_EVENT_PATH}")
           COMMIT_AUTHOR_EMAIL="$COMMIT_AUTHOR_NAME@users.noreply.github.com"
-          
-          echo $GITHUB_EVENT_PATH
           echo "Using PR author's username: $COMMIT_AUTHOR_NAME"
           git config --global user.name "$COMMIT_AUTHOR_NAME"
           git config --global user.email "$COMMIT_AUTHOR_EMAIL"
+      - run: echo "PACKAGE_JSON=$(jq -c . < package.json)" >> $GITHUB_ENV
+      - run: echo '${{ fromJson(env.PACKAGE_JSON).version }}'
 
       - name: Push changes back to PR branch
         if: always()  # Ensure this runs regardless of linter success/failure
