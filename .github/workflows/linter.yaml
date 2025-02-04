@@ -1,0 +1,58 @@
+name: Linter
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+    branches:
+      - master
+
+permissions:
+  checks: write
+  contents: write
+
+jobs:
+  run-linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        with:
+          # Fetch all history to ensure branch pushes work
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12.8
+
+      - name: Install Python dependencies
+        run: pip install black
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          auto_fix: true
+          black_auto_fix: true
+          black: true
+          black_dir: ./dags/
+
+      - name: Configure user based on PR author
+        run: |
+          COMMIT_AUTHOR_NAME=$(jq -r .pull_request.user.login "${GITHUB_EVENT_PATH}")
+          COMMIT_AUTHOR_EMAIL="$COMMIT_AUTHOR_NAME@users.noreply.github.com"
+
+          echo "Using PR author's username: $COMMIT_AUTHOR_NAME"
+          git config --global user.name "$COMMIT_AUTHOR_NAME"
+          git config --global user.email "$COMMIT_AUTHOR_EMAIL"
+
+      - name: Push changes back to PR branch
+        if: always()  # Ensure this runs regardless of linter success/failure
+        run: |
+          git add .
+          git diff --cached --exit-code || git commit -m "Apply Black formatting via GitHub Actions"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
